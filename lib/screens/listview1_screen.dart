@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ListView1Screen extends StatelessWidget {
-  final options = const ["Roxana", "Sandra", "Guerra", "Apaza"];
+  final options = const ['Roxana', 'Sandra', 'Guerra', 'Apaza'];
 
   ListView1Screen({Key? key}) : super(key: key);
 
@@ -17,7 +17,7 @@ class ListView1Screen extends StatelessWidget {
                 .map((names) => ListTile(
                       leading: const Icon(Icons.accessibility),
                       trailing: const Icon(Icons.arrow_forward_ios_outlined),
-                      title: Text("Holitas $names"),
+                      title: Text('Holitas $names'),
                     ))
                 .toList(),
 
