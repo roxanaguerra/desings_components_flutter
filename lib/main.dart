@@ -14,6 +14,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       // home: HomeScreen(),
       initialRoute: AppRoutes.initialRoute, // initialRoute: 'home',
+      // **************************
+      // ************ ROUTES **************
       // ********* 1 **************
       // routes: {
       //   'home': (BuildContext context) => HomeScreen(),
@@ -22,10 +24,14 @@ class MyApp extends StatelessWidget {
       //   'alert': (BuildContext context) => AlertScreen(),
       //   'card': (BuildContext context) => CardScreen(),
       // },
-      routes: AppRoutes.routes,
-      // **************************
-
       // ********* 2 **************
+      // routes: AppRoutes.routes,
+      // ********* 3 **************
+      routes: AppRoutes.getAppRoutes(),
+
+      // **************************
+      // *********  onGenerateRoute **************
+      // ********* 1 **************
       // EN EL CASO QUE INGRESAMOS A UNA RUTA  QNO EXISTE
       // onGenerateRoute: (settings) {
       //   print(settings); // RouteSettings("card2", null)
@@ -33,8 +39,9 @@ class MyApp extends StatelessWidget {
       //     builder: (context) => AlertScreen(),
       //   );
       // },
+      // ********* 2 **************
       // onGenerateRoute: (settings) => AppRoutes.onGenerateRoute(settings),
-
+      // ********* 3 **************
       onGenerateRoute: AppRoutes.onGenerateRoute,
       // **************************
     );
