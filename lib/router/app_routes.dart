@@ -14,12 +14,12 @@ class AppRoutes {
     MenuOption(
         route: 'listview1',
         icon: Icons.list,
-        name: 'ListView2 Screen',
+        name: 'ListView1 Screen',
         screen: ListView1Screen()),
     MenuOption(
         route: 'listview2',
         icon: Icons.list_alt_rounded,
-        name: 'ListView3 Screen',
+        name: 'ListView2 Screen',
         screen: ListView2Screen()),
     MenuOption(
         route: 'card',

@@ -1,3 +1,4 @@
+import 'package:desings_components/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:desings_components/screens/screens.dart';
 import 'package:desings_components/router/app_routes.dart';
@@ -14,7 +15,23 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       // home: HomeScreen(),
       initialRoute: AppRoutes.initialRoute, // initialRoute: 'home',
-      // **************************
+      routes: AppRoutes.getAppRoutes(),
+      onGenerateRoute: AppRoutes.onGenerateRoute,
+      theme: AppTheme.lightTheme,
+
+      // **************************************
+      // ************ THEME **************
+      // ********* 1 **************
+      // theme: ThemeData.light().copyWith(
+      //     // Color primario
+      //     primaryColor: Colors.pink,
+      //     // AppBar Theme
+      //     appBarTheme: AppBarTheme(
+      //       color: Colors.pink[200],
+      //       elevation: 0,
+      //     )),
+
+      // **************************************
       // ************ ROUTES **************
       // ********* 1 **************
       // routes: {
@@ -27,10 +44,10 @@ class MyApp extends StatelessWidget {
       // ********* 2 **************
       // routes: AppRoutes.routes,
       // ********* 3 **************
-      routes: AppRoutes.getAppRoutes(),
+      // routes: AppRoutes.getAppRoutes(),
 
-      // **************************
-      // *********  onGenerateRoute **************
+      // **************************************
+      // *********  ONGENERATEROUTE **************
       // ********* 1 **************
       // EN EL CASO QUE INGRESAMOS A UNA RUTA  QNO EXISTE
       // onGenerateRoute: (settings) {
@@ -42,7 +59,7 @@ class MyApp extends StatelessWidget {
       // ********* 2 **************
       // onGenerateRoute: (settings) => AppRoutes.onGenerateRoute(settings),
       // ********* 3 **************
-      onGenerateRoute: AppRoutes.onGenerateRoute,
+      // onGenerateRoute: AppRoutes.onGenerateRoute,
       // **************************
     );
   }
