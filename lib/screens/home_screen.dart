@@ -11,7 +11,7 @@ class HomeScreen extends StatelessWidget {
     final menuOptions = AppRoutes.menuOptions;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Componentes en Flutter'),
+        title: const Text('Componentes en Flutter'),
         // elevation: 0,
       ),
       body: ListView.separated(
