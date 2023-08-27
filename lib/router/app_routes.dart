@@ -41,6 +41,21 @@ class AppRoutes {
         name: 'Animated Container',
         screen: const AnimatedScreen(),
         icon: Icons.play_circle_outline_rounded),
+    MenuOption(
+        route: 'inputs',
+        name: 'Text Inputs',
+        screen: const InputsScreen(),
+        icon: Icons.input_rounded),
+    MenuOption(
+        route: 'slider',
+        name: 'Slider & Checks',
+        screen: const SliderScreen(),
+        icon: Icons.slow_motion_video_rounded),
+    MenuOption(
+        route: 'listviewbuilder',
+        name: 'InfiniteScroll & Pull to refresh',
+        screen: const ListViewBuilderScreen(),
+        icon: Icons.build_circle_rounded),
   ];
 
   // ******************************

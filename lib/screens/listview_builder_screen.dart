@@ -9,7 +9,12 @@ class ListViewBuilderScreen extends StatefulWidget {
 }
 
 class _ListViewBuilderScreenState extends State<ListViewBuilderScreen> {
+  // ***********************************
+  // RECURSO DE LAS IMAGENES
+  // https://picsum.photos/
+  // ***********************************
   final List<dynamic> imagesIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  // CONTROLADOR DEL SCROLL
   final ScrollController scrollController = ScrollController();
   bool isLoading = false;
 
@@ -18,8 +23,8 @@ class _ListViewBuilderScreenState extends State<ListViewBuilderScreen> {
     super.initState();
 
     scrollController.addListener(() {
-      // print(
-      //     ' ${scrollController.position.pixels} , ${scrollController.position.maxScrollExtent} ');
+      print(
+          'Posicion: ${scrollController.position.pixels} , maxScroll: ${scrollController.position.maxScrollExtent} ');
       if ((scrollController.position.pixels + 100) >=
           scrollController.position.maxScrollExtent) {
         // AGREGAR 5 IMAGENES MAS
@@ -30,15 +35,14 @@ class _ListViewBuilderScreenState extends State<ListViewBuilderScreen> {
     });
   }
 
+  // SIMULAR UNA CARGA ASINCRONA DE IMAGENES
   Future fetchData() async {
     if (isLoading) return;
 
     isLoading = true;
-
     setState(() {});
 
-    Future.delayed(const Duration(seconds: 3));
-
+    await Future.delayed(const Duration(seconds: 3));
     add5();
 
     isLoading = false;
@@ -56,10 +60,10 @@ class _ListViewBuilderScreenState extends State<ListViewBuilderScreen> {
 
   void add5() {
     print('object');
-    // saber el ultimo valor del array - ejem: 10
+    // LAST: para saber el ultimo valor del array - ejem: 10
     final lastId = imagesIds.last;
-    // imagesIds.add([1, 2, 3, 4, 5].map((e) => lastId + e));
-    // imagesIds.add([1, 2, 3, 4, 5]);
+    imagesIds.addAll([1, 2, 3, 4, 5].map((e) => lastId + e));
+    print(imagesIds);
     setState(() {});
   }
 
@@ -83,55 +87,38 @@ class _ListViewBuilderScreenState extends State<ListViewBuilderScreen> {
         removeBottom: true,
         child: Stack(
           children: [
-            ListView.builder(
-              // mostrar el scroll al inicio y final del listview
-              physics: const BouncingScrollPhysics(),
-              // info del listView
-              controller: scrollController,
-              itemCount: imagesIds.length,
-              itemBuilder: (BuildContext context, int index) {
-                return FadeInImage(
-                  width: double.infinity,
-                  height: 300,
-                  fit: BoxFit.cover,
-                  image: NetworkImage(
-                      // 'https://picsum.photos/500/300?image=${index + 1}'),
-                      'https://picsum.photos/500/300?image=${imagesIds[index]}'),
-                  placeholder: const AssetImage('assets/jar-loading.gif'),
-                );
-              },
+            RefreshIndicator(
+              color: AppTheme.primary,
+              onRefresh: onRefresh,
+              child: ListView.builder(
+                // mostrar el scroll al inicio y final del listview
+                physics: const BouncingScrollPhysics(),
+                // info del listView
+                controller: scrollController,
+                itemCount: imagesIds.length,
+                // itemCount: 6,
+                itemBuilder: (BuildContext context, int index) {
+                  return FadeInImage(
+                    width: double.infinity,
+                    height: 300,
+                    fit: BoxFit.cover,
+                    image: NetworkImage(
+                        // 'https://picsum.photos/500/300?image=${index + 1}'),
+                        'https://picsum.photos/500/300?image=${imagesIds[index]}'),
+                    placeholder: const AssetImage('assets/jar-loading.gif'),
+                  );
+                },
+              ),
             ),
-            // RefreshIndicator(
-            // color: AppTheme.primary,
-            //   onRefresh: onRefresh,
-            //   child: ListView.builder(
-            //     // mostrar el scroll al inicio y final del listview
-            //     physics: const BouncingScrollPhysics(),
-            //     // info del listView
-            //     controller: scrollController,
-            //     itemCount: imagesIds.length,
-            //     itemBuilder: (BuildContext context, int index) {
-            //       return FadeInImage(
-            //         width: double.infinity,
-            //         height: 300,
-            //         fit: BoxFit.cover,
-            //         image: NetworkImage(
-            //             // 'https://picsum.photos/500/300?image=${index + 1}'),
-            //             'https://picsum.photos/500/300?image=${imagesIds[index]}'),
-            //         placeholder: const AssetImage('assets/jar-loading.gif'),
-            //       );
-            //     },
-            //   ),
-            // ),
 
             // MOSTRAR EL LOADING ******HABILITAR CODIGO******
-            // if (isLoading)
-            // posicionar este widget donde querramos
-            Positioned(
-                bottom: 40,
-                // posicionar a la mitad, pero restandole la mitad del ancho  - del contenedor _LoadingIcon
-                left: size.width * 0.5 - 30,
-                child: _LoagingIcon())
+            if (isLoading)
+              // posicionar este widget donde querramos
+              Positioned(
+                  bottom: 40,
+                  // posicionar a la mitad, pero restandole la mitad del ancho  - del contenedor _LoadingIcon
+                  left: size.width * 0.5 - 30,
+                  child: _LoagingIcon())
           ],
         ),
       ),

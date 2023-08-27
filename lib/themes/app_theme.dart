@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppTheme {
   static const Color primary = Colors.pink;
+  static const Color secundary = Colors.indigo;
 
   static final ThemeData lightTheme = ThemeData.light().copyWith(
       // Color primario
@@ -34,14 +35,15 @@ class AppTheme {
 
       // inputDecoration
       inputDecorationTheme: const InputDecorationTheme(
-        floatingLabelStyle: TextStyle(color: primary),
+        floatingLabelStyle: TextStyle(color: secundary),
+        // cc esta habilitado el borde
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: primary),
+          borderSide: BorderSide(color: secundary),
           borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(10), topRight: Radius.circular(10)),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: primary),
+          borderSide: BorderSide(color: secundary),
           borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(10), topRight: Radius.circular(10)),
         ),
